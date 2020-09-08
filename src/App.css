@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  font-family: lato;
+}
+
+.app {
+  background-color: #FAFAFA;
+}
+
+.app__header {
+  background-color: white;
+  padding: 16px;
+  border-bottom: 1px solid lightgray;
+}
+
+.app__headerImage {
+  object-fit: contain;
+  padding-top: 8px;
+}
