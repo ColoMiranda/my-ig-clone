@@ -17,3 +17,8 @@
   object-fit: contain;
   padding-top: 8px;
 }
+
+.app__signup {
+  display: flex;
+  flex-direction: column;
+}
