@@ -11,6 +11,8 @@
   background-color: white;
   padding: 16px;
   border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
 }
 
 .app__headerImage {
@@ -26,4 +28,14 @@
 .app__signin {
   display: flex;
   flex-direction: column;
+}
+
+.app__posts {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app__postsRight {
+  margin-left: 20px;
 }

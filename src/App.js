@@ -6,6 +6,7 @@ import { db, auth } from "./Firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
+import InstagramEmbed from 'react-instagram-embed';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -62,7 +63,7 @@ function App() {
   }, [user, username]);
 
   useEffect (() => {
-      db.collection('posts').onSnapshot(snapshot => {
+      db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
         setPosts(snapshot.docs.map(doc => ({
           id: doc.id,
           post: doc.data()
@@ -97,13 +98,6 @@ function App() {
 
   return (
     <div className="app">
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName}/>
-      ): (
-        <h3>Login to upload</h3>
-      )}
-
 
       <Modal
         open={open}
@@ -182,22 +176,51 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt="Logo"
         />
-      </div>
 
-      {user ? (
+        {user ? (
         <Button onClick={ () => auth.signOut()} >Logout</Button>
-      ): (
+        ): (
          <div className="app__loginContainer">
           <Button onClick={ () => setOpen(true)} >Sign Up</Button>
           <Button onClick={ () => setOpenSignIn(true)} >Sign In</Button>
         </div>
       )}
-      
-      {
-        posts.map(({ id, post }) => (
-          <Post key={id} userName={post.userName} caption={post.caption} imageUrl={post.imageUrl}/> 
-        ))
-      }   
+
+
+      </div>
+
+      <div className="app__posts">
+        <div className="app__postsLeft">
+          {
+            posts.map(({ id, post }) => (
+              <Post key={id} postId={id} userName={post.userName} caption={post.caption} imageUrl={post.imageUrl}/> 
+            ))
+          }
+
+        </div>
+        <div className="app__postsRight">
+          <InstagramEmbed 
+            url='https://www.instagram.com/p/B5rBBzjDO0U/'
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName='div'
+            protocol=''
+            injectScript
+            onLoading={() => {}}
+            onSuccess={() => {}}
+            onAfterRender={() => {}}
+            onFailure={() => {}}
+          />
+        </div>     
+      </div>
+
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName}/>
+      ): (
+        <h3>Login to upload</h3>
+      )}
+   
     </div>
   );
 }
