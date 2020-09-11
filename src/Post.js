@@ -61,7 +61,6 @@ function Post({ postId, userName, caption, imageUrl }) {
           Comment
         </button>
       </form>
-
     </div>
   );
 }
