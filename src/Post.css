@@ -18,6 +18,11 @@
   padding: 16px;
 }
 
+.post_comments {
+  font-weight: normal;
+  padding: 16px;
+}
+
 .post__header {
   display: flex;
   align-items: center;
@@ -39,6 +44,7 @@
   border: none;
   padding: 10px;
   border-top: 1px solid lightgray;
+  color: lightgray;
 }
 
 .post__button {
@@ -47,4 +53,8 @@
   color: #6082a3;
   background-color: transparent;
   border-top: 1px solid lightgray;
+}
+
+.post__commentRow {
+  margin-bottom: 16px;
 }
