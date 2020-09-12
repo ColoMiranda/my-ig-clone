@@ -3,7 +3,7 @@ import "./App.css";
 import Post from "./Post";
 import ImageUpload from "./ImageUpload";
 import { db, auth } from "./Firebase";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
 import InstagramEmbed from 'react-instagram-embed';
@@ -33,6 +33,24 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
+
+const ColorButton = withStyles((theme) => ({
+  root: {
+    color: '#fff',
+    backgroundColor: '#2196f3',
+    '&:hover': {
+      backgroundColor: '1769aa',
+    },
+    margin: '0 16px 0 0',
+  },
+}))(Button);
+
+const RegularButton = withStyles((theme) => ({
+  root: {
+    margin: '0 16px 0 0',
+  },
+}))(Button);
+
 
 function App() {
   const classes = useStyles();
@@ -178,11 +196,11 @@ function App() {
         />
 
         {user ? (
-        <Button onClick={ () => auth.signOut()} >Logout</Button>
+        <RegularButton onClick={ () => auth.signOut()} >Logout</RegularButton>
         ): (
          <div className="app__loginContainer">
-          <Button onClick={ () => setOpen(true)} >Sign Up</Button>
-          <Button onClick={ () => setOpenSignIn(true)} >Sign In</Button>
+          <RegularButton onClick={ () => setOpenSignIn(true)} >Sign In</RegularButton>
+          <ColorButton variant="contained" color="primary" onClick={ () => setOpen(true)} >Sign Up</ColorButton>
         </div>
       )}
 
@@ -218,7 +236,7 @@ function App() {
       {user?.displayName ? (
         <ImageUpload username={user.displayName}/>
       ): (
-        <h3>Login to upload</h3>
+        <h2 className="app_loginToUploadMessage">Please login to upload photos</h2>
       )}
    
     </div>

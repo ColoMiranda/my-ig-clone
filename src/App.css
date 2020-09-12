@@ -42,3 +42,16 @@
 .app__postsRight {
   margin-left: 20px;
 }
+
+.app_loginToUploadMessage {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  padding-bottom: 36px;
+
+}
+
+.app__loginContainerSignupButton {
+  padding-left: 34px;
+}
